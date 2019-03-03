@@ -1,0 +1,32 @@
+{
+  "name": "app-v1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "node ./node_modules/webpack/bin/webpack --config ./build/webpack.base.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kvillarojo/vue-app-spa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "vue": "^2.6.8"
+  },
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-middleware": "^3.6.0",
+    "webpack-hot-middleware": "^2.24.3"
+  },
+  "bugs": {
+    "url": "https://github.com/kvillarojo/vue-app-spa/issues"
+  },
+  "homepage": "https://github.com/kvillarojo/vue-app-spa#readme"
+}
