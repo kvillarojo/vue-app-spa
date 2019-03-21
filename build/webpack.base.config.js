@@ -1,6 +1,6 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-
+const Fiber = require('fibers')
 const config = {
   entry: {
     app: path.resolve(__dirname, '../src/client-entry.js')
@@ -15,7 +15,6 @@ const config = {
   },
   mode: 'development',
   plugins: [
-    // make sure to include the plugin!
     new VueLoaderPlugin()
   ],
   module: {
@@ -30,9 +29,22 @@ const config = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          css: 'css-loader',
-          'scss': 'css-loader|sass-loader'
+          extractCSS: true
         }
+      },
+      {
+        test: /\.scss$/,
+        use: [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader'
+        }, {
+          loader: 'sass-loader',
+          options: {
+            implementation: require('sass'),
+            fiber: Fiber
+          }
+        }]
       },
       {
         test: /\.js$/,

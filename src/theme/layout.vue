@@ -1,29 +1,24 @@
 <template>
     <div>
-      <nav class="nav has-shadow">
-        <div class="container">
-          <a href="/">
-            <img src="http://bit.ly/vue-img"
-              alt="Vue SPA">
-          </a>
+      <app-header></app-header>
+      <section class="main-section section">
+        <div class="container content">
+          <router-view></router-view>
         </div>
-      </nav>
-      <section class="main-section section"></section>
-      <footer class="footer">
-        <div class="container">
-          <div class="content has-text-centered">
-            Follow us on
-            <a href="http://bit.ly/vue-component" targeyt="_blank"> Twitter </a>
-          </div>
-        </div>
-      </footer>
+      </section>
+      <app-footer></app-footer>
     </div>
 </template>
-
 <script>
-  export default {}
+import Header from './AppHeader.vue'
+import Footer from './AppFooter.vue'
+export default {
+  components: {
+    'app-header': Header,
+    'app-footer': Footer
+  }
+}
 </script>
-
 <style lang="scss">
 
 </style>

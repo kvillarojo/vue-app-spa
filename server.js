@@ -18,5 +18,5 @@ app.get('*', (reg, res) => {
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
-  console.log(`server wew at http://localhost:${port}`)
+  console.log(`server starts at http://localhost:${port}`)
 })
