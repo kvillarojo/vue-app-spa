@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import VueRoute from 'vue-router'
-// import Category from './theme/Category.vue'
-// import Login from './theme/Login.vue'
-// import NotFound from './theme/NotFound.vue'
+import Category from './theme/Category.vue'
+import Login from './theme/Login.vue'
+import NotFound from './theme/NotFound.vue'
 
-const Category = () => import('./theme/Category.vue')
-const Login = () => import('./theme/Login.vue')
-const NotFound = () => import('./theme/NotFound.vue')
+// const Category = () => import('./theme/Category.vue')
+// const Login = () => import('./theme/Login.vue')
+// const NotFound = () => import('./theme/NotFound.vue')
 
 Vue.use(VueRoute)
 

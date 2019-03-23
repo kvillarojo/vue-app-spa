@@ -17,3 +17,14 @@
     </div>
   </nav>
 </template>
+<script>
+import eventBus from 'event-bus.js';
+export default {
+  data() {
+    return {
+      isAuthenticated: false
+    }
+  }
+}
+</script>
+
