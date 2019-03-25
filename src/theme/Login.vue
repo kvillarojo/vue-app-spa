@@ -4,8 +4,6 @@
 
     <div v-if="isAuthenticated">
       Authenticated
-      <p>Name : {{ profile.firstName }}</p>
-      <p>Favorite Sandwich : {{ profile.favoriteSandwich }}</p>
       <div >
           <button @click="logout()" class="button is-warning"> Logout </button>
       </div>
@@ -56,54 +54,49 @@
 </template>
 <script>
   import appServices from '../app.service.js';
-  import eventBus from '../event-bus.js';
+  import { mapGetters, mapActions } from 'vuex'
   export default {
    data () {
      return {
        username : '',
-       password : '',
-       isAuthenticated: false,
-       profile: {}
+       password : ''
+      //  profile: {}
      }
    },
-   watch : {
-     isAuthenticated : function (val) {
-      if(val){
-        appServices.getProfile()
-          .then(profile => {
-            this.profile = profile
-          })
-      }else{
-        this.profile = {}
-      }
-      eventBus.$emit('authStatusUpdate', val)
-     }
+   computed: {
+     ...mapGetters(['isAuthenticated'])
    },
+  //  watch : {
+    //  isAuthenticated : function (val) {
+    //   if(val){
+    //     appServices.getProfile()
+    //       .then(profile => {
+    //         this.profile = profile
+    //       })
+    //   }else{
+    //     this.profile = {}
+    //   }
+    //  }
+  //  },
    methods : {
+     ...mapActions({
+       logout: 'logout'
+     }),
      login () {
-       appServices.login({username: this.username, password: this.password})
-        .then((data) => {
-          window.localStorage.setItem('token', data.token)
-          window.localStorage.setItem('tokenExpiration', data.expiration)
-          this.isAuthenticated = true
-          this.username = ''
-          this.password = ''
-        })
-        .catch(() => window.alert('could not login'))
-     },
-     logout () {
-       this.username = ''
-       this.password = ''
-       this.isAuthenticated = false
+       this.$store.dispatch('login', {username: this.username, password: this.password})
+       .then(() => {
+         this.username = ''
+         this.password = ''
+       })
      }
-   },
-  created () {
-    var expiration = window.localStorage.getItem('tokenExpiration')
-    var unixTimeStamp = new Date().getTime() / 1000
-    if(expiration !== null && parseInt(expiration) - unixTimeStamp > 0){
-      this.isAuthenticated = true
-    }
-  }
+   }
+  // created () {
+  //   var expiration = window.localStorage.getItem('tokenExpiration')
+  //   var unixTimeStamp = new Date().getTime() / 1000
+  //   if(expiration !== null && parseInt(expiration) - unixTimeStamp > 0){
+  //     // this.isAuthenticated = true
+  //   }
+  // }
  }
  </script>
  <style>

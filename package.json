@@ -28,8 +28,12 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "express": "^4.16.4",
+    "fibers": "^3.1.1",
     "gh-pages": "^2.0.1",
-    "vue": "^2.6.8"
+    "sass": "^1.17.3",
+    "style-loader": "^0.23.1",
+    "vue": "^2.6.8",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
     "@babel/preset-stage-2": "^7.0.0",
@@ -45,12 +49,14 @@
     "sass-loader": "^7.1.0",
     "vue-loader": "^15.7.0",
     "vue-router": "^3.0.2",
+    "vue-server-renderer": "^2.6.9",
     "vue-template-compiler": "^2.6.8",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-dev-middleware": "^3.6.0",
     "webpack-dev-server": "^3.2.1",
-    "webpack-hot-middleware": "^2.24.3"
+    "webpack-hot-middleware": "^2.24.3",
+    "webpack-node-externals": "^1.7.2"
   },
   "bugs": {
     "url": "https://github.com/kvillarojo/vue-app-spa/issues"

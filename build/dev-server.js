@@ -1,7 +1,10 @@
 const webpack = require('webpack')
 const clientConfig = require('./webpack.client.config')
+const serverConfig = require('./webpack.server.config')
+const path = require('path')
+const MFS = require('memory-fs')
 
-const devServe = function setupDevServer (app) {
+const devServe = function setupDevServer (app, onUpdate) {
   clientConfig.entry.app = [
     'webpack-hot-middleware/client',
     clientConfig.entry.app
@@ -22,6 +25,14 @@ const devServe = function setupDevServer (app) {
   )
 
   app.use(require('webpack-hot-middleware')(clientCompiler))
+
+  const serverCompiler = webpack(serverConfig)
+  const mfs = new MFS()
+  const outputPath = path.join(serverConfig.output.path, 'server/main.js')
+  serverCompiler.outputFileSystem = mfs
+  serverCompiler.watch({}, () => {
+    onUpdate(mfs.readFileSync(outputPath, 'utf-8'))
+  })
 }
 
 module.exports = devServe
